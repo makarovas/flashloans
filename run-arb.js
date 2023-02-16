@@ -45,7 +45,15 @@ web3.eth
           .call(),
       ]);
 
-      console.log(kyberResults);
+      const kyberRates = {
+        buy: parseFloat(1 / (kyberResults[0].expectedRate / 10 ** 18)),
+        sel: parseFloat(kyberResults[1].expectedRate / 10 ** 18),
+        diff:
+          parseFloat(1 / (kyberResults[0].expectedRate / 10 ** 18)) -
+          parseFloat(kyberResults[1].expectedRate / 10 ** 18), 
+      };
+
+      console.log(kyberRates);
     }
   })
   .on("error", (error) => console.log(error));
